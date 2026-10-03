@@ -93,8 +93,8 @@ shared-library/
 `pipelineTemplateHelloWorld` is the only pipeline template shipped here.
 
 End-to-end usage examples for the JFrog and Jira steps live in the sibling
-[`pipeline-samples/ci-jfrog-integration/`](https://github.com/pipeline-training-ws/pipeline-samples/tree/main/ci-jfrog-integration) and
-[`pipeline-samples/ci-jira-integration/`](https://github.com/pipeline-training-ws/pipeline-samples/tree/main/ci-jira-integration) directories, not under `shared-library/`.
+[`pipeline-samples/ci-jfrog-integration/`](https://github.com/mawuku-pipeline-training-ws/pipeline-samples/tree/main/ci-jfrog-integration) and
+[`pipeline-samples/ci-jira-integration/`](https://github.com/mawuku-pipeline-training-ws/pipeline-samples/tree/main/ci-jira-integration) directories, not under `shared-library/`.
 
 ---
 
@@ -119,7 +119,7 @@ Configure the library once in **Manage Jenkins → System → Global Pipeline Li
 | --- | --- |
 | Name | `shared-library` |
 | Default version | `main` |
-| SCM | Git — `https://github.com/pipeline-training-ws/shared-library.git` |
+| SCM | Git — `https://github.com/mawuku-pipeline-training-ws/shared-library.git` |
 
 Then reference it implicitly from any Jenkinsfile (auto-loaded), or explicitly:
 
@@ -131,12 +131,12 @@ Then reference it implicitly from any Jenkinsfile (auto-loaded), or explicitly:
 
 Every Jenkinsfile in this repo actually resolves the library's coordinates from `SHAREDLIB_GIT_*`
 environment variables (defaulted in-line, overridable at folder/controller level) rather than a
-hardcoded identifier — see [`sample-app-helloworld/Jenkinsfile`](https://github.com/pipeline-training-ws/sample-app-helloworld/blob/main/Jenkinsfile)
+hardcoded identifier — see [`sample-app-helloworld/Jenkinsfile`](https://github.com/mawuku-pipeline-training-ws/sample-app-helloworld/blob/main/Jenkinsfile)
 for the full pattern:
 
 ```groovy
 env.SHAREDLIB_GIT_SERVER = env.SHAREDLIB_GIT_SERVER ?: "https://github.com"
-env.SHAREDLIB_GIT_ORG = env.SHAREDLIB_GIT_ORG ?: "pipeline-training-ws"
+env.SHAREDLIB_GIT_ORG = env.SHAREDLIB_GIT_ORG ?: "mawuku-pipeline-training-ws"
 env.SHAREDLIB_GIT_REPO = env.SHAREDLIB_GIT_REPO ?: "shared-library"
 env.SHAREDLIB_GIT_TAG_ = env.SHAREDLIB_GIT_TAG ?: "main"
 env.SHAREDLIB_GIT_CREDENTIALS = env.SHAREDLIB_GIT_CREDENTIALS ?: "gh-pat"
@@ -324,10 +324,10 @@ The pod template follows Kubernetes security best practices:
 
 | Path | Description |
 | --- | --- |
-| [`sample-app-helloworld/`](https://github.com/pipeline-training-ws/sample-app-helloworld) | Resolves the library from `SHAREDLIB_GIT_*` env vars and calls `pipelineTemplateHelloWorld('ci-config.yaml')`, plus its own `ci-config.yaml` |
-| [`pipeline-samples/ci-jfrog-integration/`](https://github.com/pipeline-training-ws/pipeline-samples/tree/main/ci-jfrog-integration) | End-to-end Artifactory upload/download example using `jfrogUploadArtifact`/`jfrogDownloadArtifact` |
-| [`pipeline-samples/ci-jira-integration/`](https://github.com/pipeline-training-ws/pipeline-samples/tree/main/ci-jira-integration) | Automated Jira issue creation via `jiraCreateIssue` |
-| [`template-catalog/templates/`](https://github.com/pipeline-training-ws/template-catalog/tree/main/templates) | Pipeline Template Catalog entries (`0-helloWorld`, `1-helloWorld-MB`) built on top of this library |
+| [`sample-app-helloworld/`](https://github.com/mawuku-pipeline-training-ws/sample-app-helloworld) | Resolves the library from `SHAREDLIB_GIT_*` env vars and calls `pipelineTemplateHelloWorld('ci-config.yaml')`, plus its own `ci-config.yaml` |
+| [`pipeline-samples/ci-jfrog-integration/`](https://github.com/mawuku-pipeline-training-ws/pipeline-samples/tree/main/ci-jfrog-integration) | End-to-end Artifactory upload/download example using `jfrogUploadArtifact`/`jfrogDownloadArtifact` |
+| [`pipeline-samples/ci-jira-integration/`](https://github.com/mawuku-pipeline-training-ws/pipeline-samples/tree/main/ci-jira-integration) | Automated Jira issue creation via `jiraCreateIssue` |
+| [`template-catalog/templates/`](https://github.com/mawuku-pipeline-training-ws/template-catalog/tree/main/templates) | Pipeline Template Catalog entries (`0-helloWorld`, `1-helloWorld-MB`) built on top of this library |
 
 ---
 
@@ -347,5 +347,5 @@ Configure the following credentials in Jenkins / CloudBees CI before using the i
 1. Branch from `main` — use `feature/<short-description>` naming.
 2. Add or update the relevant `vars/*.groovy` step.
 3. Place any new shell scripts or YAML resources under `resources/`.
-4. Add a sample Jenkinsfile under [`pipeline-samples`](https://github.com/pipeline-training-ws/pipeline-samples) demonstrating the change.
+4. Add a sample Jenkinsfile under [`pipeline-samples`](https://github.com/mawuku-pipeline-training-ws/pipeline-samples) demonstrating the change.
 5. Open a Pull Request — pipeline linting runs automatically on PR creation.
